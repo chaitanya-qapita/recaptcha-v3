@@ -16,6 +16,7 @@
     "gatsby-plugin-sharp": "^2.6.36",
     "gatsby-source-filesystem": "^2.3.30",
     "gatsby-transformer-sharp": "^2.5.15",
+    "nodemon": "^2.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -35,7 +36,7 @@
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start:dev": "npm run develop",
-    "start": "node src/server/app.js",
+    "start": "nodemon src/server/app.js",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"

@@ -8,10 +8,11 @@ const port = process.env['PORT'] || 5000;
 const publicPath = path.join(__dirname, '../../', 'public');
 
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
 app.use(bodyParser.json());
 app.use(express.static(publicPath));
+// app.use(express.json());
 
 const secretKey = process.env['RECAPTCHA_SECRET_KEY'];
 
@@ -21,14 +22,16 @@ app.get('', (req, res) => {
 });
 
 app.post('/submit', (req, res) => {
+  console.log('body received: ', req.body);
   const {
     emailVal,
     messageVal,
     token
   } = req.body;
-  const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
+  const verificationUrl = `https://www.recaptcha.net/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
 
   if (!token) {
+    console.log(emailVal, messageVal, token);
     return res.json({
       "msg": 'There was a problem with your request. Please try again later.',
     });
